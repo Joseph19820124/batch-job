@@ -8,9 +8,9 @@ spring:
       max-request-size: 200MB
 
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/batchjob}
-    username: ${DATABASE_USERNAME:postgres}
-    password: ${DATABASE_PASSWORD:postgres}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:batchjob}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
