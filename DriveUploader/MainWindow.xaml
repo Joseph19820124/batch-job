@@ -1,0 +1,90 @@
+<Window x:Class="DriveUploader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Google Drive Uploader" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="Google Drive Batch Uploader"
+                   FontSize="24" FontWeight="Bold" Margin="0,0,0,16"/>
+
+        <!-- Drop Zone -->
+        <Border Grid.Row="1"
+                BorderBrush="#4285F4"
+                BorderThickness="3"
+                CornerRadius="12"
+                Background="#F8F9FA"
+                AllowDrop="True"
+                Drop="DropZone_Drop"
+                DragEnter="DropZone_DragEnter"
+                DragLeave="DropZone_DragLeave"
+                x:Name="DropZone">
+            <Grid>
+                <!-- Drop Hint (visible when no upload in progress) -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                            x:Name="DropHint">
+                    <TextBlock Text="&#x1F4C1;" FontSize="64" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Drag and drop a folder here"
+                               FontSize="18" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                    <TextBlock Text="All files will be uploaded to Google Drive"
+                               FontSize="12" Foreground="Gray" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Upload Progress (visible during upload) -->
+                <Grid x:Name="UploadProgress" Visibility="Collapsed" Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock x:Name="StatusText" Text="Uploading..." FontSize="16" FontWeight="SemiBold"/>
+                        <ProgressBar x:Name="ProgressBar" Height="24" Margin="0,8" Maximum="100"/>
+                        <TextBlock x:Name="ProgressText" Text="0 / 0 files" Foreground="Gray"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="1" x:Name="LogList" Margin="0,16,0,0"
+                             FontFamily="Consolas" FontSize="12"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Settings Panel -->
+        <Expander Grid.Row="2" Header="Settings" Margin="0,16,0,0">
+            <StackPanel Margin="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Target Folder ID:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" x:Name="FolderIdTextBox" Margin="8,4"/>
+
+                    <TextBlock Grid.Row="1" Text="Preserve Structure:" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="1" Grid.Column="1" x:Name="PreserveStructureCheckBox"
+                              IsChecked="True" Margin="8,4" VerticalAlignment="Center"
+                              Content="Create subfolders matching original directory structure"/>
+                </Grid>
+            </StackPanel>
+        </Expander>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="Clear Log" Click="ClearLog_Click"/>
+            <Button Content="Cancel" x:Name="CancelButton" Click="Cancel_Click" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>

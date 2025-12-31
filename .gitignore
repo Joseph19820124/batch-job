@@ -48,3 +48,10 @@ credentials/
 ### Local config ###
 application-local.yml
 **/application-local.yml
+
+### .NET ###
+DriveUploader/bin/
+DriveUploader/obj/
+DriveUploader/publish/
+DriveUploader/appsettings.json
+!DriveUploader/appsettings.example.json
