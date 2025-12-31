@@ -28,7 +28,7 @@ public class GoogleDriveConfig {
     private String googleCredentials;
 
     @Bean
-    public Drive googleDriveService() throws GeneralSecurityException, IOException {
+    public Drive driveClient() throws GeneralSecurityException, IOException {
         HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 
         GoogleCredentials credentials = GoogleCredentials
