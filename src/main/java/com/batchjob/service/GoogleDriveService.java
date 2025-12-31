@@ -33,6 +33,7 @@ public class GoogleDriveService {
         );
 
         File uploadedFile = driveService.files().create(fileMetadata, mediaContent)
+                .setSupportsAllDrives(true)
                 .setFields("id, name, webViewLink, size")
                 .execute();
 
