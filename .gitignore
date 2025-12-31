@@ -41,3 +41,10 @@ build/
 *.json
 !package.json
 credentials/
+.env
+.env.*
+!.env.example
+
+### Local config ###
+application-local.yml
+**/application-local.yml

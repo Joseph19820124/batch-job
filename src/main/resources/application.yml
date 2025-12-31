@@ -26,9 +26,12 @@ server:
   port: ${PORT:8080}
 
 google:
-  credentials: ${GOOGLE_CREDENTIALS:}
+  oauth:
+    client-id: ${GOOGLE_CLIENT_ID:}
+    client-secret: ${GOOGLE_CLIENT_SECRET:}
+    refresh-token: ${GOOGLE_REFRESH_TOKEN:}
   drive:
-    folder-id: ${GOOGLE_DRIVE_FOLDER_ID:}
+    folder-id: ${GOOGLE_DRIVE_FOLDER_ID:1LIHKkDtUHODebY7R7Ev64FV-gEP-Ap8j}
 
 logging:
   level:
